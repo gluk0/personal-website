@@ -2,13 +2,16 @@ name: 'Terraform Deploy'
 
 on:
   push:
-    branches: [ "master" ]
-    paths:
-      - 'infrastructure/**'
-  pull_request:
+    # For dummy commits to main to trigger builds. 
     branches: [ "main" ]
     paths:
       - 'infrastructure/**'
+  pull_request:
+    # on merge to main auto kick off tf pipeline if dir modified == infrastructure. 
+    branches: [ "main" ]
+    paths:
+      - 'infrastructure/**'
+
 
 env:
   PROJECT_ID: rich-clarke-dev  
@@ -51,10 +54,8 @@ jobs:
           -backend-config="prefix=portfolio/state"
 
     - name: 'Terraform Plan'
-      if: github.event_name == 'pull_request'
       run: terraform plan -no-color
       continue-on-error: true
 
     - name: 'Terraform Apply'
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve 
