@@ -17,6 +17,7 @@ provider "google" {
   region  = var.region
 }
 
+
 module "artifact_registry" {
   source = "./modules/artifact_registry"
 
