@@ -24,21 +24,17 @@ module "google_apis" {
 
 module "artifact_registry" {
   source = "./modules/artifact_registry"
-
   project_id     = var.project_id
   region         = var.region
   repository_id  = var.repository_id
-  
   depends_on = [module.google_apis]
 }
 
 module "cloud_run" {
   source = "./modules/cloud_run"
-
   project_id    = var.project_id
   region        = var.region
   service_name  = var.service_name
   image_name    = var.image_name
-  
   depends_on = [module.google_apis]
 } 
