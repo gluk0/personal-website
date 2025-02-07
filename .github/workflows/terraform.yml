@@ -1,17 +1,14 @@
-name: 'Terraform Deploy'
+name: 'Pipeline: Terraform (./infrastructure)'
 
 on:
   push:
-    # For dummy commits to main to trigger builds. 
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
     paths:
       - 'infrastructure/**'
   pull_request:
-    # on merge to main auto kick off tf pipeline if dir modified == infrastructure. 
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
     paths:
       - 'infrastructure/**'
-
 
 env:
   PROJECT_ID: rich-clarke-dev  
@@ -35,7 +32,7 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-    - name: 'Set up Cloud SDK'
+    - name: 'Set up Google Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
     - name: 'Setup Terraform'
@@ -43,19 +40,15 @@ jobs:
       with:
         terraform_version: '1.5.0'
 
-    - name: 'Terraform Format'
-      run: terraform fmt -check
-      continue-on-error: true
-
-    - name: 'Terraform Init'
+    - name: 'Initialise Terraform'
       run: |
         terraform init \
           -backend-config="bucket=$TF_STATE_BUCKET" \
           -backend-config="prefix=portfolio/state"
 
-    - name: 'Terraform Plan'
+    - name: 'Run Terraform Plan'
       run: terraform plan -no-color
       continue-on-error: true
 
-    - name: 'Terraform Apply'
+    - name: 'Run Terraform Apply'
       run: terraform apply -auto-approve 
