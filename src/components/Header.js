@@ -12,7 +12,7 @@ const Header = () => {
       borderBottom: '1px solid #eee'
     }}>
       <div style={{
-        fontSize: '1.7rem',
+        fontSize: '1.3rem',
         fontWeight: 500
       }}>
         🌿 rich clarke
