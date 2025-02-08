@@ -39,7 +39,7 @@ const Header = () => {
 const linkStyle = {
   color: '#334',
   textDecoration: 'none',
-  fontSize: '1.4rem',
+  fontSize: '1.2rem',
   transition: 'color 0.2s ease',
   ':hover': {
     color: '#666'
