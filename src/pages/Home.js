@@ -79,13 +79,13 @@ const Terminal = () => {
 };
 
 const containerStyle = {
-  maxWidth: '1300px',
-  margin: '50px auto',
-  padding: '40px',
+  maxWidth: '1000px',
+  margin: '30px auto',
+  padding: '25px',
   backgroundColor: '#fafafa',
   position: 'relative',
   fontFamily: 'JetBrains Mono, monospace',
-  fontSize: '23px',
+  fontSize: '16px',
   overflow: 'hidden',
   borderRadius: '1px',
   borderColor: '#fafafa'
@@ -111,7 +111,7 @@ const scanlineStyle = {
 };
 
 const lineStyle = {
-  marginBottom: '10px',
+  marginBottom: '6px',
   display: 'flex',
   alignItems: 'flex-start',
   textShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
@@ -119,7 +119,7 @@ const lineStyle = {
 
 const promptStyle = {
   color: '#2f363d',
-  marginRight: '12px'
+  marginRight: '8px'
 };
 
 const textStyle = {
@@ -139,7 +139,7 @@ const Home = () => {
       backgroundColor: '#fff',
       minHeight: '100vh',
       margin: 0,
-      padding: '20px'
+      padding: '15px'
     }}>
       <Terminal />
     </div>
