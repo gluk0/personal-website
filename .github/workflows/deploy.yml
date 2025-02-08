@@ -1,4 +1,4 @@
-name: Pipeline Deploy Image and Update Service
+name: 'Pipeline: Frontend Image Build + Deployment'
 
 on:
   push:
@@ -18,12 +18,9 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
