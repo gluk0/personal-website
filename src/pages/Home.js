@@ -80,15 +80,25 @@ const Terminal = () => {
 
 const containerStyle = {
   maxWidth: '1000px',
+  width: '90%',
   margin: '30px auto',
-  padding: '25px',
+  padding: '15px',
   backgroundColor: '#fafafa',
   position: 'relative',
   fontFamily: 'JetBrains Mono, monospace',
-  fontSize: '16px',
-  overflow: 'hidden',
+  fontSize: 'clamp(12px, 3vw, 16px)',
+  overflow: 'auto',
   borderRadius: '1px',
   borderColor: '#fafafa'
+};
+
+const mobileContainerStyle = {
+  ...containerStyle,
+  '@media (max-width: 768px)': {
+    margin: '15px auto',
+    padding: '10px',
+    fontSize: '12px',
+  }
 };
 
 const screenStyle = {
@@ -139,7 +149,10 @@ const Home = () => {
       backgroundColor: '#fff',
       minHeight: '100vh',
       margin: 0,
-      padding: '15px'
+      padding: '15px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-start'
     }}>
       <Terminal />
     </div>
