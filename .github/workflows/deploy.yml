@@ -10,8 +10,8 @@ env:
   PROJECT_ID: rich-clarke-dev    
   REGION: europe-west2          
   SERVICE_NAME: portfoliowebsite       
-  REPOSITORY_ID: portfolio      
-  REGISTRY: europe-west2-docker.pkg.dev/rich-clarke-dev/portfolio
+  REPOSITORY_ID: core-images      
+  REGISTRY: europe-west2-docker.pkg.dev
 
 jobs:
   deploy:
@@ -38,13 +38,13 @@ jobs:
 
       - name: Build and Push Container
         run: |
-          docker build -t ${{ env.REGISTRY }}/${{ env.SERVICE_NAME }}:${{ github.sha }} .
-          docker push ${{ env.REGISTRY }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          docker build -t ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }} .
+          docker push ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v1
         with:
           service: ${{ env.SERVICE_NAME }}
           region: ${{ env.REGION }}
-          image: ${{ env.REGISTRY }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          image: ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
           flags: '--allow-unauthenticated' 
