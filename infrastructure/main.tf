@@ -16,11 +16,18 @@ provider "google" {
   region  = var.region
 }
 
+module "google_apis" {
+  source = "./modules/google_apis"
+
+  project_id = var.project_id
+}
+
 module "artifact_registry" {
   source = "./modules/artifact_registry"
-  project_id   = var.project_id
-  region       = var.region
-  repository_id = var.repository_id
+  project_id     = var.project_id
+  region         = var.region
+  repository_id  = var.repository_id
+  depends_on = [module.google_apis]
 }
 
 module "cloud_run" {
@@ -29,4 +36,5 @@ module "cloud_run" {
   region        = var.region
   service_name  = var.service_name
   image_name    = var.image_name
+  depends_on = [module.google_apis]
 } 
