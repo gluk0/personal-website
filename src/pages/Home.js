@@ -85,7 +85,7 @@ const containerStyle = {
   backgroundColor: '#fafafa',
   position: 'relative',
   fontFamily: 'JetBrains Mono, monospace',
-  fontSize: '23px',
+  fontSize: '17px',
   overflow: 'hidden',
   borderRadius: '1px',
   borderColor: '#fafafa'
