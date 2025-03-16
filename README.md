@@ -4,7 +4,7 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/personal-website.git
+git clone https://github.com/gluk0/personal-website
 ```
 
 2. Install dependencies:
